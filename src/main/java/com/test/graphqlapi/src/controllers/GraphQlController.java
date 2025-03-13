@@ -7,6 +7,7 @@ import com.test.graphqlapi.src.sercices.CustomerService;
 import com.test.graphqlapi.src.sercices.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,18 @@ public class GraphQlController {
     private final OrderMapper orderMapper;
     private final CustomerService customerService;
 
+    @MutationMapping
+    public Order createOrder(@Argument String code, @Argument Long customerId, @Argument List<Long> lineItemsIdList) {
+        return orderService.createOrder(code, customerId, lineItemsIdList);
+    }
+
     @QueryMapping
     public List<Order> orders() {
         return orderMapper.toOrderList(orderService.findAll());
     }
 
     @QueryMapping
-    public Order orderById(@Argument Long id) {
+    public Order orderById(@Argument long id) {
         return orderMapper.toOrder(orderService.findById(id));
     }
 
