@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "`order`")
-public class Order {
+public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,9 +17,9 @@ public class Order {
     private String code;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<LineItem> lineItems;
+    private List<LineItemEntity> lineItems;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerEntity customer;
 }
