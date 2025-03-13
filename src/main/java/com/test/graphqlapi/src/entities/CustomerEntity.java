@@ -8,7 +8,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-public class Customer {
+@Table(name = "customer")
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,5 +21,5 @@ public class Customer {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<OrderEntity> orders;
 }

@@ -1,8 +1,8 @@
 package com.test.graphqlapi.src.testdatainitialization;
 
-import com.test.graphqlapi.src.entities.Customer;
-import com.test.graphqlapi.src.entities.LineItem;
-import com.test.graphqlapi.src.entities.Order;
+import com.test.graphqlapi.src.entities.CustomerEntity;
+import com.test.graphqlapi.src.entities.LineItemEntity;
+import com.test.graphqlapi.src.entities.OrderEntity;
 import com.test.graphqlapi.src.sercices.CustomerService;
 import com.test.graphqlapi.src.sercices.OrderService;
 import org.springframework.boot.CommandLineRunner;
@@ -21,28 +21,28 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Customer customer = new Customer();
-        customer.setName("John Doe");
-        customer.setEmail("john.doe@example.com");
-        customer.setBirthDate(LocalDate.of(1990, 1, 1));
+        CustomerEntity customerEntity = new CustomerEntity();
+        customerEntity.setName("John Doe");
+        customerEntity.setEmail("john.doe@example.com");
+        customerEntity.setBirthDate(LocalDate.of(1990, 1, 1));
 
-        LineItem item1 = new LineItem();
+        LineItemEntity item1 = new LineItemEntity();
         item1.setName("Product A");
         item1.setTotalPrice(100.0);
 
-        LineItem item2 = new LineItem();
+        LineItemEntity item2 = new LineItemEntity();
         item2.setName("Product B");
         item2.setTotalPrice(200.0);
 
-        Order order = new Order();
-        order.setCode("ORDER123");
-        order.setCustomer(customer);
-        order.setLineItems(Arrays.asList(item1, item2));
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setCode("ORDER123");
+        orderEntity.setCustomer(customerEntity);
+        orderEntity.setLineItems(Arrays.asList(item1, item2));
 
-        item1.setOrder(order);
-        item2.setOrder(order);
+        item1.setOrder(orderEntity);
+        item2.setOrder(orderEntity);
 
-        customerService.save(customer);
-        orderService.save(order);
+        customerService.save(customerEntity);
+        orderService.save(orderEntity);
     }
 }
