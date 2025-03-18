@@ -38,7 +38,8 @@ public class GraphQlController {
     }
 
     @SchemaMapping
-    public Customer customer(Order order) {
-        return orderMapper.toCustomer(customerService.findById(order.customer().id()));
+    public Customer customer(Order order) throws Exception {
+//        customerService.fetchById(order.customer().id()) - uncomment to retrieve user from db
+        return customerService.fetchById(order.customer().id());
     }
 }
