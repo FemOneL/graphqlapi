@@ -1,6 +1,6 @@
 package com.test.graphqlapi.src.sercices;
 
-import com.test.graphqlapi.src.entities.LineItem;
+import com.test.graphqlapi.src.entities.LineItemEntity;
 import com.test.graphqlapi.src.repositories.LineItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,16 @@ import java.util.List;
 public class LineItemService {
     private final LineItemRepository lineItemRepository;
 
-    public List<LineItem> findAll() {
+    public List<LineItemEntity> findAll() {
         return lineItemRepository.findAll();
     }
 
-    public LineItem findById(Long id) {
+    public LineItemEntity findById(Long id) {
         return lineItemRepository.findById(id).orElse(null);
     }
 
-    public LineItem save(LineItem lineItem) {
-        return lineItemRepository.save(lineItem);
+    public LineItemEntity save(LineItemEntity lineItemEntity) {
+        return lineItemRepository.save(lineItemEntity);
     }
 
     public void deleteById(Long id) {
