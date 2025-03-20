@@ -26,6 +26,10 @@ public class CustomerService {
         return customerRepository.findById(id).orElse(null);
     }
 
+    public List<CustomerEntity> findAllById(Iterable<Long> ids) {
+        return customerRepository.findAllById(ids);
+    }
+
     public Customer fetchById(Long id) throws Exception {
         return customerDataFetcher.get(DataFetchingEnvironmentImpl.newDataFetchingEnvironment().arguments(Map.of(ID, id)).build());
     }
